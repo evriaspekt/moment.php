@@ -12,17 +12,18 @@ class MomentLocale
     /**
      * @var string
      */
-    private static $locale = 'en_GB';
+    private static string $locale = 'en_GB';
 
     /**
      * @var boolean
      */
-    private static $findSimilar = false;
+    private static bool $findSimilar = false;
 
     /**
+     * Locale content indexed by locale name.
      * @var array
      */
-    private static $localeContent = array();
+    private static array $localeContent = [];
 
     /**
      * @param string $locale
@@ -44,15 +45,18 @@ class MomentLocale
      */
     public static function loadLocaleContent()
     {
-        $pathFile = self::findLocaleFile();
-
-        if (!$pathFile)
+        if (!isset(self::$localeContent[self::$locale]))
         {
-            throw new MomentException('Locale does not exist: ' . $pathFile);
-        }
+            $pathFile = self::findLocaleFile();
 
-        /** @noinspection PhpIncludeInspection */
-        self::$localeContent = require $pathFile;
+            if (!$pathFile)
+            {
+                throw new MomentException('Locale does not exist: ' . $pathFile);
+            }
+
+            /** @noinspection PhpIncludeInspection */
+            self::$localeContent[self::$locale] = require $pathFile;
+        }
     }
 
     /**
@@ -60,7 +64,7 @@ class MomentLocale
      */
     public static function getLocaleContent()
     {
-        return self::$localeContent;
+        return self::$localeContent[self::$locale];
     }
 
     /**
@@ -71,13 +75,13 @@ class MomentLocale
      */
     public static function getLocaleString(array $keys)
     {
-        $string = self::$localeContent;
+        $string = self::$localeContent[self::$locale];
 
         foreach ($keys as $key)
         {
             if (isset($string[$key]) === false)
             {
-                if ($key == 'monthsNominative' && isset($string['months']))
+                if ($key === 'monthsNominative' && isset($string['months']))
                 {
                     $string = $string['months'];
                     continue;
@@ -204,7 +208,7 @@ class MomentLocale
     {
         $locales = glob($path . '*.php');
 
-        if ($locales && !empty($locales))
+        if (false !== $locales && [] !== $locales)
         {
             return $locales;
         }
