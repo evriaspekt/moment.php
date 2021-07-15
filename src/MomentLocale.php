@@ -32,7 +32,7 @@ class MomentLocale
      * @return void
      * @throws MomentException
      */
-    public static function setLocale($locale, $findSimilar = false)
+    public static function setLocale(string $locale, bool $findSimilar = false) : void
     {
         self::$locale = $locale;
         self::$findSimilar = $findSimilar;
@@ -43,7 +43,7 @@ class MomentLocale
      * @return void
      * @throws MomentException
      */
-    public static function loadLocaleContent()
+    public static function loadLocaleContent() : void
     {
         if (!isset(self::$localeContent[self::$locale]))
         {
@@ -62,7 +62,7 @@ class MomentLocale
     /**
      * @return array
      */
-    public static function getLocaleContent()
+    public static function getLocaleContent() : array
     {
         return self::$localeContent[self::$locale];
     }
@@ -103,7 +103,7 @@ class MomentLocale
      * @return string
      * @throws MomentException
      */
-    public static function renderLocaleString(array $localeKeys, array $formatArgs = array())
+    public static function renderLocaleString(array $localeKeys, array $formatArgs = []) : string
     {
         // get locale handler
         $localeString = self::getLocaleString($localeKeys);
@@ -122,7 +122,7 @@ class MomentLocale
      *
      * @return string
      */
-    public static function prepareSpecialLocaleTags($format)
+    public static function prepareSpecialLocaleTags(string $format) : string
     {
         $placeholders = array(
             // months
@@ -148,7 +148,7 @@ class MomentLocale
      * @return string
      * @throws MomentException
      */
-    public static function renderSpecialLocaleTags($format)
+    public static function renderSpecialLocaleTags(string $format) : string
     {
         $placeholders = array(
             // months
@@ -181,7 +181,7 @@ class MomentLocale
     /**
      * @return null|string
      */
-    private static function findLocaleFile()
+    private static function findLocaleFile() : ?string
     {
         $basePathFile = __DIR__ . '/Locales/' . self::$locale;
         $pathFile = $basePathFile . '.php';
@@ -204,7 +204,7 @@ class MomentLocale
      *
      * @return null|array
      */
-    private static function fetchSimilarLocales($path)
+    private static function fetchSimilarLocales(string $path) : ?array
     {
         $locales = glob($path . '*.php');
 
