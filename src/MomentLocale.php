@@ -10,11 +10,6 @@ namespace Moment;
 class MomentLocale
 {
     /**
-     * @var Moment
-     */
-    private static $moment;
-
-    /**
      * @var string
      */
     private static $locale = 'en_GB';
@@ -28,14 +23,6 @@ class MomentLocale
      * @var array
      */
     private static $localeContent = array();
-
-    /**
-     * @param Moment $moment
-     */
-    public static function setMoment(Moment $moment)
-    {
-        self::$moment = $moment;
-    }
 
     /**
      * @param string $locale

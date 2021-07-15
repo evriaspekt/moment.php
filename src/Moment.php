@@ -132,9 +132,6 @@ class Moment extends \DateTime
             $timezone = self::$defaultTimezone;
         }
 
-        // set moment
-        MomentLocale::setMoment($this);
-
         // load locale content
         MomentLocale::loadLocaleContent();
 
