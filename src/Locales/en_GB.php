@@ -3,13 +3,39 @@
 // locale: great britain english (en-gb)
 // author: Chris Gedrim https://github.com/chrisgedrim
 
-return array(
-    "months"        => explode('_', 'January_February_March_April_May_June_July_August_September_October_November_December'),
-    "monthsNominative"        => explode('_', 'January_February_March_April_May_June_July_August_September_October_November_December'),
-    "monthsShort"   => explode('_', 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'),
-    "weekdays"      => explode('_', 'Monday_Tuesday_Wednesday_Thursday_Friday_Saturday_Sunday'),
-    "weekdaysShort" => explode('_', 'Mon_Tue_Wed_Thu_Fri_Sat_Sun'),
-    "calendar"      => array(
+return [
+    "months" => [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+    ],
+    "monthsNominative" => [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+    ],
+    "monthsShort"   => ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "weekdays"      => ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "weekdaysShort" => ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    "calendar"      => [
         "sameDay"  => '[Today]',
         "nextDay"  => '[Tomorrow]',
         "lastDay"  => '[Yesterday]',
@@ -17,8 +43,8 @@ return array(
         "sameElse" => 'l',
         "withTime" => '[at] H:i',
         "default"  => 'd/m/Y',
-    ),
-    "relativeTime"  => array(
+    ],
+    "relativeTime"  => [
         "future" => 'in %s',
         "past"   => '%s ago',
         "s"      => 'a few seconds',
@@ -33,11 +59,11 @@ return array(
         "MM"     => '%d months',
         "y"      => 'a year',
         "yy"     => '%d years',
-    ),
+    ],
     "ordinal"       => function ($number)
     {
         $n = $number % 100;
-        $ends = array('th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th');
+        $ends = ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'];
 
         if ($n >= 11 && $n <= 13)
         {
@@ -46,11 +72,11 @@ return array(
 
         return $number . '[' . $ends[$number % 10] . ']';
     },
-    "week"          => array(
+    "week"          => [
         "dow" => 1, // Monday is the first day of the week.
-        "doy" => 4  // The week that contains Jan 4th is the first week of the year.
-    ),
-    "customFormats" => array(
+        "doy" => 4, // The week that contains Jan 4th is the first week of the year.
+    ],
+    "customFormats" => [
         "LT" => "G:i",               // 22:00
         "LTS" => "G:i:s",            // 22:00:00
         "L" => "d/m/Y",              // 12/06/2010
@@ -61,5 +87,5 @@ return array(
         "lll" => "j M Y G:i",        // 12 Jun 2010 22:00
         "LLLL" => "l, j F F Y G:i",  // Saturday, 12 June June 2010 22:00
         "llll" => "D, j M Y G:i",    // Sat, 12 Jun 2010 22:00
-    ),
-);
+    ],
+];
